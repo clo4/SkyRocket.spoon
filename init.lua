@@ -73,7 +73,10 @@ local function buttonNameToEventType(name, optionName)
   if name == 'right' then
     return hs.eventtap.event.types.rightMouseDown
   end
-  error(optionName .. ': only "left" and "right" mouse button supported, got ' .. name)
+  if name == 'other' then
+    return hs.eventtap.event.types.otherMouseDown
+  end
+  error(optionName .. ': only "left", "right", and "other" are supported, got ' .. name)
 end
 
 function SkyRocket:new(options)
@@ -99,6 +102,7 @@ function SkyRocket:new(options)
     {
       hs.eventtap.event.types.leftMouseDown,
       hs.eventtap.event.types.rightMouseDown,
+      hs.eventtap.event.types.otherMouseDown,
     },
     resizer:handleClick()
   )
@@ -107,6 +111,7 @@ function SkyRocket:new(options)
     {
       hs.eventtap.event.types.leftMouseUp,
       hs.eventtap.event.types.rightMouseUp,
+      hs.eventtap.event.types.otherMouseUp,
     },
     resizer:handleCancel()
   )
@@ -115,6 +120,7 @@ function SkyRocket:new(options)
     {
       hs.eventtap.event.types.leftMouseDragged,
       hs.eventtap.event.types.rightMouseDragged,
+      hs.eventtap.event.types.otherMouseDragged,
     },
     resizer:handleDrag()
   )
