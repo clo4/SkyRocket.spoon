@@ -52,6 +52,9 @@ local function getWindowUnderMouse()
   local my_pos = hs.geometry.new(hs.mouse.absolutePosition())
   local my_screen = hs.mouse.getCurrentScreen()
 
+  -- TODO(clo4): doesn't work with hs console window, check if this can be fixed?
+  -- I don't know anything about this stuff but my guess is that even though it's
+  -- on the top it's actually at the end of the window order.
   return hs.fnutils.find(hs.window.orderedWindows(), function(w)
     return my_screen == w:screen() and my_pos:inside(w:frame())
   end)
@@ -267,6 +270,8 @@ function SkyRocket:handleClick()
     local flags = event:getFlags()
     local eventType = event:getType()
 
+    -- TODO(clo4): I want to add a toggle to disable this check entirely for people that want
+    -- to use the macOS native NSWindowShouldDragOnGesture feature
     local isMoving = eventType == self.moveStartMouseEvent and flags:containExactly(self.moveModifiers)
     local isResizing = eventType == self.resizeStartMouseEvent and flags:containExactly(self.resizeModifiers)
 
