@@ -268,7 +268,7 @@ function SkyRocket:handleClick()
       local currentWindow = getWindowUnderMouse()
 
       local f = currentWindow:frame()
-      local m = hs.mouse.getAbsolutePosition()
+      local m = hs.mouse.absolutePosition()
       local cx = (f.x1+f.x2) / 2
       local cy = (f.y1+f.y2) / 2
       if m.x > cx and m.y > cy then
