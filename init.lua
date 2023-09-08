@@ -89,6 +89,7 @@ function SkyRocket:new(options)
     disabledApps = tableToMap(options.disabledApps or {}),
     dragging = false,
     dragType = nil,
+    moveEnabled = not options.enableMove == false, -- True if `nil` or `true`, have to check explicitly
     moveStartMouseEvent = buttonNameToEventType(options.moveMouseButton or 'left', 'moveMouseButton'),
     moveModifiers = options.moveModifiers or {'cmd', 'shift'},
     windowCanvas = createResizeCanvas(options.opacity or 0.3),
@@ -270,9 +271,7 @@ function SkyRocket:handleClick()
     local flags = event:getFlags()
     local eventType = event:getType()
 
-    -- TODO(clo4): I want to add a toggle to disable this check entirely for people that want
-    -- to use the macOS native NSWindowShouldDragOnGesture feature
-    local isMoving = eventType == self.moveStartMouseEvent and flags:containExactly(self.moveModifiers)
+    local isMoving = self.moveEnabled and eventType == self.moveStartMouseEvent and flags:containExactly(self.moveModifiers)
     local isResizing = eventType == self.resizeStartMouseEvent and flags:containExactly(self.resizeModifiers)
 
     if isMoving or isResizing then

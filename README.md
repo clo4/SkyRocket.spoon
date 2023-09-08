@@ -30,11 +30,16 @@ Once you've installed it, add this to your `~/.hammerspoon/init.lua` file:
 ```lua
 local SkyRocket = hs.loadSpoon("SkyRocket")
 
+-- All of the following settings are the defaults and can be omitted.
 sky = SkyRocket:new({
   -- Opacity of resize canvas
   opacity = 0.3,
 
-  -- Which modifiers to hold to move a window?
+  -- You can disable moving the window if you want to use the
+  -- built-in NSWindowShouldDragOnGesture macOS feature
+  enableMove = true
+
+  -- Which modifiers to hold to move a window? (cmd, shift, ctrl, alt)
   moveModifiers = {'cmd', 'shift'},
 
   -- Which mouse button to hold to move a window? (left, right, other)
@@ -43,7 +48,7 @@ sky = SkyRocket:new({
   -- Which modifiers to hold to resize a window?
   resizeModifiers = {'ctrl', 'shift'},
 
-  -- Which mouse button to hold to resize a window? (left, right, other)
+  -- Which mouse button to hold to resize a window?
   resizeMouseButton = 'left',
 })
 ```
