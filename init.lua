@@ -273,6 +273,10 @@ function SkyRocket:handleClick()
     if isMoving or isResizing then
       local currentWindow = getWindowUnderMouse()
 
+      if currentWindow:isFullScreen() then
+        return nil
+      end
+
       local f = currentWindow:frame()
       local m = hs.mouse.absolutePosition()
       local cx = (f.x1+f.x2) / 2
