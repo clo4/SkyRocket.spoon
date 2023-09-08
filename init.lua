@@ -36,7 +36,7 @@ local function createResizeCanvas(alpha)
       action = 'fill',
       type = 'rectangle',
       fillColor = { red = 0, green = 0, blue = 0, alpha = alpha },
-      roundedRectRadii = { xRadius = 5.0, yRadius = 5.0 },
+      roundedRectRadii = { xRadius = 9.0, yRadius = 9.0 },
     },
     1
   )
